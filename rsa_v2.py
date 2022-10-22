@@ -97,25 +97,34 @@ def Decryption (message,privateKey,n):
 
 
 def Main():
-    output = "INVALID"
+    output = -1
     
-    publicKey,privateKey,n = KeyGeneration() #generate keys
+    publicKey,privateKey,n = KeyGeneration() #generate keys 
     
-    #encrypt or decrypt
-    choice = int(input("Enter input. 1 to encrypt, 2 to decrypt: "))
-    
-    if choice ==1:
-        message = input("Enter plain text: ")
-        output = Encryption(message,publicKey,n)
+    #encrypt and/or decrypt #with same p,q,e values
+    choice= -1
+    while choice != 0:
+        choice = int(input("Enter input. 1 to encrypt, 2 to decrypt, 0 to quit: "))
         
-        print("Plain text: ", message, "\nEncryption is:", output)
+        if choice ==0:
+            break
         
-    elif choice ==2:
-        message = input("Enter cipher text: ")
-        output = Decryption(message,privateKey,n)
-        print("Cipher text: ", message, "\nDecryption:", output)
-    else:
-        print(output)
+        elif choice ==1:
+            message = input("Enter plain text: ")
+            output = Encryption(message,publicKey,n)
+            
+            print("Plain text: ", message, "\nEncryption is:", output)
+            
+        elif choice ==2:
+            message = input("Enter cipher text: ")
+            output = Decryption(message,privateKey,n)
+            print("Cipher text: ", message, "\nDecryption:", output)
+        
+       
+        else:
+            print("INVALID")
+
+        print("\n")
 
 
 
