@@ -110,13 +110,13 @@ Compute the cipher text using the plain text and the public key.
 def Encryption (message,publicKey,n):
    
     listA = []
-    for i in message:
+    for i in message:#converts each character in plaintext to a hex value and adds it to a list
         xStr = i.encode('utf-8')
         y=xStr.hex()
         listA.append(y)
     
     cipherText = []
-    for i in listA:
+    for i in listA:#converts each hex val in list to integer and gets an encryption value. appends each value to ciphertext
         c=((int(i,16))**publicKey)%n #cipherText = (int(message)**publicKey ) % n 
         cipherText.append(c)
     
@@ -130,15 +130,15 @@ Compute the plain text using the cipher text and the private key.
 def Decryption (message,privateKey,n):
     
     plainText = " "
-    txt = message.split(",")
+    txt = message.split(",") #splits ciphertext string into a list
     
     for i in txt:
-        d=( int(i)**privateKey)%n #plainText = (int(message)**privateKey ) % n
-        d_hex = hex(d)[2:]
-        d_bytes =bytes(d_hex,encoding = 'utf-8')
+        d=( int(i)**privateKey)%n #converts each string val in cipher to integer and gets respective decryption value
+        d_hex = hex(d)[2:]#converts int decryption val to hex and removes 0x 
+        d_bytes =bytes(d_hex,encoding = 'utf-8')#next few lines convert hex val to a string val 
         d_string = codecs.decode(d_bytes,"hex")
         z=(str(d_string,'utf-8'))
-        plainText+=z
+        plainText+=z# initial decryption value has been converted to a character and added to plaintext string
     return plainText
 
 
