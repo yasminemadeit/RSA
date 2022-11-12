@@ -68,7 +68,7 @@ def computeGCD(x, y): #gcd (e, EulerPhi )
     gcd = 0 
     small = min(x,y)
     for i in range(1, small + 1):
-        if((x % i == 0) and (y % i == 0)):
+        if((x % i == 0) and (y % i == 0)):# largest positive integer that divides each of the integers
             gcd = i
              
     return gcd
