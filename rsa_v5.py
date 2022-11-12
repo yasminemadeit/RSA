@@ -75,7 +75,7 @@ def computeGCD(x, y): #gcd (e, EulerPhi )
     
     
 '''
-Computing private key for chosen p,q,e
+Computing private key for random p,q,e values
 '''
 def KeyGeneration():
     p ,q, publicKey,privateKey= 0,0, 0,0 
@@ -115,9 +115,10 @@ def Encryption (message,publicKey,n):
         y=xStr.hex()
         listA.append(y)
     
+    #cipherText = (message**publicKey ) % n 
     cipherText = []
     for i in listA:#converts each hex val in list to integer and gets an encryption value. appends each value to ciphertext
-        c=((int(i,16))**publicKey)%n #cipherText = (int(message)**publicKey ) % n 
+        c=((int(i,16))**publicKey)%n 
         cipherText.append(c)
     
     return cipherText
@@ -128,10 +129,11 @@ def Encryption (message,publicKey,n):
 Compute the plain text using the cipher text and the private key.
 '''
 def Decryption (message,privateKey,n):
-    
+  
     plainText = " "
     txt = message.split(",") #splits ciphertext string into a list
     
+    #plainText = (message**privateKey ) % n
     for i in txt:
         d=( int(i)**privateKey)%n #converts each string val in cipher to integer and gets respective decryption value
         d_hex = hex(d)[2:]#converts int decryption val to hex and removes 0x 
